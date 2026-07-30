@@ -40,16 +40,18 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('dim_salesperson')
-              field: ID_SALESPERSON
+              arguments:
+                to: ref('dim_salesperson')
+                field: ID_SALESPERSON
 
       - name: ID_CARMAKE
         description: "Clave foranea a la dimension de marcas de vehiculos."
         tests:
           - not_null
           - relationships:
-              to: ref('dim_carmake')
-              field: ID_CARMAKE
+              arguments:
+                to: ref('dim_carmake')
+                field: ID_CARMAKE
 
       - name: TOTALSALE
         description: "Monto total de la venta neta para ese mes, vendedor y marca."
