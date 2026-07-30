@@ -1,7 +1,7 @@
 {{ 
     config(
         materialized='table',
-        tags=['processing', 'carmake']
+        tags=['processing','sales', 'carmake']
     ) 
 }}
 
