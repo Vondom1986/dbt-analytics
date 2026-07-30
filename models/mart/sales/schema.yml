@@ -1,0 +1,61 @@
+models:
+  - name: dim_carmake # Dimension de carmake
+    description: "Dimension de Marcas de Vehiculos. Contiene una clave unica para cada marca."
+    columns:
+      - name: ID_CARMAKE
+        description: "Clave subrogada unica para cada marca de vehiculo."
+        tests:
+          - unique
+          - not_null
+
+      - name: CARMAKE
+        description: "Nombre de la marca de vehiculo."
+        tests:
+          - not_null
+
+  - name: dim_salesperson # Dimension de Salesperson
+    description: "Dimension de Vendedores. Contiene una clave unica para cada vendedor."
+    columns:
+      - name: ID_SALESPERSON
+        description: "Clave subrogada unica para cada vendedor."
+        tests:
+          - unique
+          - not_null
+
+      - name: SALESPERSON
+        description: "Nombre del vendedor."
+        tests:
+          - not_null
+
+  - name: fct_montly_sales # Tabla de hechos
+    description: "Tabla de hechos que consolida las ventas mensuales agregadas por vendedor y marca de vehiculo utilizando claves de dimension."
+    columns:
+      - name: DDATE
+        description: "Mes de la venta (primer dia del mes)."
+        tests:
+          - not_null
+
+      - name: ID_SALESPERSON
+        description: "Clave foranea a la dimension de vendedores."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_salesperson')
+              field: ID_SALESPERSON
+
+      - name: ID_CARMAKE
+        description: "Clave foranea a la dimension de marcas de vehiculos."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_carmake')
+              field: ID_CARMAKE
+
+      - name: TOTALSALE
+        description: "Monto total de la venta neta para ese mes, vendedor y marca."
+
+      - name: TOTALCOM
+        description: "Monto total de la comision para ese mes, vendedor y marca."     
+
+
+
