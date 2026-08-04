@@ -12,6 +12,11 @@ models:
         description: "Nombre de la marca de vehiculo."
         tests:
           - not_null
+          - accepted_values:
+              arguments:
+                values: ['Toyota','Honda','Ford','Chevrolet','Nissan','BMW','Mercedes-Benz','Audi','Volkswagen']
+              config:
+                severity: warn
 
   - name: dim_salesperson # Dimension de Salesperson
     description: "Dimension de Vendedores. Contiene una clave unica para cada vendedor."
@@ -57,7 +62,4 @@ models:
         description: "Monto total de la venta neta para ese mes, vendedor y marca."
 
       - name: TOTALCOM
-        description: "Monto total de la comision para ese mes, vendedor y marca."     
-
-
-
+        description: "Monto total de la comision para ese mes, vendedor y marca."
